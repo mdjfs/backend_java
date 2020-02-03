@@ -1,14 +1,17 @@
 package communication;
 
 public class persona {
+	private String Id;
 	
-		String Id;
+	public String getId() {
+		return Id;
+	}
+
+	public void setId(String id) {
+		Id = id;
+	}
+
 		
-		public String getId() {
-			return Id;
-		}
 		
-		public void setId(String Id) {
-			this.Id = Id;
-		}
+
 }
