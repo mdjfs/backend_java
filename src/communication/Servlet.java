@@ -15,7 +15,7 @@ public class Servlet extends HttpServlet{
 			// mdjfs: returns Hello World ! on servlet with method GET
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			out.println("<h1> Bye World ! </h1>");
+			out.println("<h1> hello powerpoint! ;p </h1>");
 			out.close();
 	}
 
