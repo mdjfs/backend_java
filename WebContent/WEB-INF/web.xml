@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<<<<<<< HEAD
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -772,6 +773,9 @@ information in the standard deployment descriptor.
 Tools are not allowed to add the non-standard information into the
 standard deployment descriptor.
 -->
+=======
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+>>>>>>> 110931d0a7b0bb51f8643a6ddd4e7b6821e32d2a
 <!-- mdjfs: Declaration of the servlets here !
 	How go to the servlet? with the url:
 	localhost:(port)/TeamBackendJava/(url-pattern) -->
