@@ -1,5 +1,5 @@
 package communication;
-import com.google.gson.*;
+import com.google.gson.Gson;
 
 public class Main {
 
@@ -10,10 +10,7 @@ public class Main {
 		ex.getData("Persona","getNombre");
 		ex.getData("Persona","getEstado","123456");
 		ex.getData("Persona","getEstado","86298139"); */
-		String json = "{\"method\":"
-						+ "\"nombredemetodo\","
-						+ "\"id\":"
-						+ "5";
+		String json = "{'method':'nombredemetodo','id':5}";
 		Gson gson = new Gson();
 		System.out.println(gson.fromJson(json, User.class));
 		
