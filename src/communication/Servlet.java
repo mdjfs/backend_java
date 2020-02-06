@@ -1,6 +1,7 @@
 package communication;
 
 import java.io.IOException;
+import com.google.gson.*;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,10 @@ public class Servlet extends HttpServlet{
 			PrintWriter out = response.getWriter();
 			out.println("<h1> hello powerpoint!</h1>");
 			out.close();
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+		
 	}
 
 }
