@@ -17,7 +17,9 @@ public class Main {
 		ex.getData("Persona","getEstado","123456");
 		ex.getData("Persona","getEstado","86298139"); */
 		String json_unformatted = "{\"objName\":\"objeto\",\"methodName\":\"metodo\", \"params\":[\"123\",123, 123.5, 125.5], \"types\":[\"string\",\"int\",\"float\",\"float\"]}";
-		JSONObject json = null;
+		
+		
+		/* JSONObject json = null;    Todo esto esta en la clase Reformateador
 		JSONParser parser = new JSONParser();
 		try {
 			json = (JSONObject) parser.parse(json_unformatted);
@@ -38,7 +40,7 @@ public class Main {
 		System.out.println(objeto_gson.getparamsInt()[0]);
 		System.out.println(objeto_gson.getparamsFloat()[0]);
 		System.out.println(objeto_gson.getparamsFloat()[1]);
-		System.out.println(objeto_gson.getparamsString()[0]);
+		System.out.println(objeto_gson.getparamsString()[0]); */
 		
 	}
 
