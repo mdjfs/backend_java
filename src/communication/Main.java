@@ -17,10 +17,9 @@ public class Main {
 		String json = "{'objName':'objeto','methodName':'metodo', 'paramsInt':[54,53], 'paramsFloat':[43.3,32.3], 'paramsString':['hola','como']}";
 		Gson gson = new Gson();
 		Pojo objeto_gson = gson.fromJson(json, Pojo.class); //Pojo es la clase base
-		//los primeros dos se convierten a pojo exitosamente
+		//se convierten a pojo exitosamente
 		System.out.println(objeto_gson.getobjName());
 		System.out.println(objeto_gson.getmethodName());
-		//el resto aun no, pero si se ejecutan los tamaños si le colocas .length
 		System.out.println(objeto_gson.getparamsInt()[0]);
 		System.out.println(objeto_gson.getparamsInt()[1]);
 		System.out.println(objeto_gson.getparamsFloat()[0]);
