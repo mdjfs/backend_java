@@ -7,6 +7,9 @@ public class User {
 	      this.id = id;
 	      this.method = method;
 	}
+	public String Getmethod() {
+		return method;
+	}
 	@Override
 	public String toString()
 	{
