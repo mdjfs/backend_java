@@ -3,7 +3,6 @@ package communication;
 public class Pojo {
 	//mdjfs: ok, esta es la clase base
 	
-	// datos que no necesito preformatear
 	private String objName;
 	private String methodName;
 	

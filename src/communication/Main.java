@@ -1,5 +1,11 @@
 package communication;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import com.google.gson.Gson;
+
+import aux.DetectarArrays;
 
 public class Main {
 
@@ -10,22 +16,29 @@ public class Main {
 		ex.getData("Persona","getNombre");
 		ex.getData("Persona","getEstado","123456");
 		ex.getData("Persona","getEstado","86298139"); */
-		
-		//mdjfs: ok, aqui tengo un json, lo convierto a un objeto
-		//para eso necesito una clase base que contenga las variables
-		//que aparecen en el json
-		String json = "{'objName':'objeto','methodName':'metodo', 'paramsInt':[54,53], 'paramsFloat':[43.3,32.3], 'paramsString':['hola','como']}";
+		String json_unformatted = "{\"objName\":\"objeto\",\"methodName\":\"metodo\", \"params\":[\"123\",123, 123.5, 125.5], \"types\":[\"string\",\"int\",\"float\",\"float\"]}";
+		JSONObject json = null;
+		JSONParser parser = new JSONParser();
+		try {
+			json = (JSONObject) parser.parse(json_unformatted);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String types = json.get("types").toString();
+		String params = json.get("params").toString();
+		DetectarArrays find_array = new DetectarArrays(params, types);
+		find_array.ProcesarArrays();
+		String json_formatted = "{\"objName\":\"objeto\",\"methodName\":\"metodo\", \"paramsInt\":"+find_array.getparamsInt()+", \"paramsFloat\":"+find_array.getparamsFloat()+", \"paramsString\":"+find_array.getparamsString()+"}";
 		Gson gson = new Gson();
-		Pojo objeto_gson = gson.fromJson(json, Pojo.class); //Pojo es la clase base
+		Pojo objeto_gson = gson.fromJson(json_formatted, Pojo.class); //Pojo es la clase base
 		//se convierten a pojo exitosamente
 		System.out.println(objeto_gson.getobjName());
 		System.out.println(objeto_gson.getmethodName());
 		System.out.println(objeto_gson.getparamsInt()[0]);
-		System.out.println(objeto_gson.getparamsInt()[1]);
 		System.out.println(objeto_gson.getparamsFloat()[0]);
 		System.out.println(objeto_gson.getparamsFloat()[1]);
 		System.out.println(objeto_gson.getparamsString()[0]);
-		System.out.println(objeto_gson.getparamsString()[1]);
 		
 	}
 

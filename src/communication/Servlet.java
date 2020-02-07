@@ -1,7 +1,7 @@
 package communication;
 
 import java.io.IOException;
-import com.google.gson.*;
+import com.google.gson.Gson;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -23,7 +23,7 @@ public class Servlet extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
-		
+		System.out.println(request.getParameter("json"));
 	}
 
 }
