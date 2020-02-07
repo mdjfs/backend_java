@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 import com.google.gson.Gson;
 
 import aux.DetectarArrays;
+import aux.Reformateador;
 
 public class Main {
 
@@ -16,9 +17,9 @@ public class Main {
 		ex.getData("Persona","getNombre");
 		ex.getData("Persona","getEstado","123456");
 		ex.getData("Persona","getEstado","86298139"); */
-		String json_unformatted = "{\"objName\":\"objeto\",\"methodName\":\"metodo\", \"params\":[\"123\",123, 123.5, 125.5], \"types\":[\"string\",\"int\",\"float\",\"float\"]}";
-		
-		
+		String json_unformatted = "{\"objName\":\"Persona\",\"methodName\":\"getPersona\",\"params\":[1, 2, 3],\"types\":[\"int\", \"int\", \"int\"]}";
+		Reformateador formato = new Reformateador(json_unformatted);
+		Pojo hola = formato.getFormatPojo();
 		/* JSONObject json = null;    Todo esto esta en la clase Reformateador
 		JSONParser parser = new JSONParser();
 		try {

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import aux.Reformateador;
+
 @WebServlet("/Dispacher")
 public class Dispacher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,8 +46,18 @@ public class Dispacher extends HttpServlet {
 		out.close();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
+		String json = request.getParameter("json");
+		Reformateador formato = new Reformateador(json);
+		Pojo objeto_json = formato.getFormatPojo();
+		/* ya con este objeto lo manejas con
+		 * objeto_json.getparamsInt(), etc, todos sus getters, te devuelven strings o arreglos nativos de java
+		 * por ejemplo: */
+		System.out.println(objeto_json.getmethodName());
+		int[] params = objeto_json.getparamsInt();
+		for(int i=0; i < params.length ; i++) {
+			System.out.println("array index:"+i+" parameter int: "+params[i]);
+		}
 	}
 
 }

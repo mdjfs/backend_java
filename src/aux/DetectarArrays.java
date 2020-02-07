@@ -107,6 +107,15 @@ public class DetectarArrays {
 				open_array = true;
 			}
 		}
+		if(paramsInt.equals("[")) {
+			paramsInt = "[]";
+		}
+		if(paramsFloat.equals("[")) {
+			paramsFloat = "[]";
+		}
+		if(paramsString.equals("[")) {
+			paramsString = "[]";
+		}
 		
 		
 	}

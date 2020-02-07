@@ -17,7 +17,7 @@ public class Reformateador {
 		this.json = json;
 	}
 	
-	public Pojo Formatear() {
+	public Pojo getFormatPojo() {
 		try 
 		{
 			jsonobj = (JSONObject) parser.parse(json);
@@ -25,14 +25,14 @@ public class Reformateador {
 			String params = jsonobj.get("params").toString();
 			DetectarArrays find_array = new DetectarArrays(params, types);
 			find_array.ProcesarArrays();
-			String json_formatted = "{\"objName\":\"objeto\",\"methodName\":\"metodo\", \"paramsInt\":"+find_array.getparamsInt()+", \"paramsFloat\":"+find_array.getparamsFloat()+", \"paramsString\":"+find_array.getparamsString()+"}";
+			String json_formatted = "{\"objName\":"+jsonobj.get("objName")+",\"methodName\":"+jsonobj.get("methodName")+", \"paramsInt\":"+find_array.getparamsInt()+", \"paramsFloat\":"+find_array.getparamsFloat()+", \"paramsString\":"+find_array.getparamsString()+"}";
 			Gson gson = new Gson();
 			Pojo objeto_gson = gson.fromJson(json_formatted, Pojo.class);
 			return objeto_gson;
 		} 
 		catch (ParseException e) 
 		{
-			e.printStackTrace();
+			System.out.println(json);
 			return null;
 		}
 	}
