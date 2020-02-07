@@ -12,8 +12,12 @@ public class Persona {
 	public int getId() {
 		return this.id;
 	}
+	
+	public void prub(int i, String str,float fl) {
+		System.out.println("prueba");
+	}
 
-	public boolean getEstado(String id) {
+	/*public boolean getEstado(String id) {
 		boolean estado; 
 		int newid = Integer.parseInt(id);
 		
@@ -24,7 +28,7 @@ public class Persona {
 		}
 		return estado;
 	}
-	
+	*/
 	public boolean getEstado(int id) {
 		boolean estado; 
 		
