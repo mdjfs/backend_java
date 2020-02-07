@@ -14,9 +14,6 @@ public class Main {
 		//mdjfs: ok, aqui tengo un json, lo convierto a un objeto
 		//para eso necesito una clase base que contenga las variables
 		//que aparecen en el json
-		Pojo.setSizeFloat(2);
-		Pojo.setSizeInt(2);
-		Pojo.setSizeString(2);
 		String json = "{'objName':'objeto','methodName':'metodo', 'paramsInt':[54,53], 'paramsFloat':[43.3,32.3], 'paramsString':['hola','como']}";
 		Gson gson = new Gson();
 		Pojo objeto_gson = gson.fromJson(json, Pojo.class); //Pojo es la clase base

@@ -7,23 +7,10 @@ public class Pojo {
 	private String objName;
 	private String methodName;
 	
-	// datos que necesito preformatear
-	private static int paramsInt[];
-	private static float paramsFloat[];
-	private static String paramsString[];
-	
-	// metodos para preformatear
-	public static void setSizeInt(int size) {
-		paramsInt = new int[size];
-	}
-	
-	public static void setSizeFloat(int size) {
-		paramsFloat = new float[size];
-	}
-	
-	public static void setSizeString(int size) {
-		paramsString = new String[size];
-	}
+	// datos tipados
+	private int paramsInt[];
+	private float paramsFloat[];
+	private String paramsString[];
 	
 	//metodos para retornar variables una vez convertido a pojo
 	public String getobjName() {
