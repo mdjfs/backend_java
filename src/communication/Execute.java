@@ -1,7 +1,6 @@
 package communication;
 
 import java.lang.reflect.*;
-import java.util.ArrayList;
 
 public class Execute {
 	private Pojo pojo;
@@ -33,15 +32,15 @@ public class Execute {
 							for(int j=0; j<c.length; j++) {
 								
 								switch(c[j].getSimpleName()) {
-									case "int":
+									case "int[]":
 										resul = metodo[i].invoke(objeto,pojo.getparamsInt()).toString();
 										System.out.println(resul);
 										break;
-									case "float":
+									case "float[]":
 										resul = metodo[i].invoke(objeto,pojo.getparamsFloat()).toString();
 										System.out.println(resul);
 										break;
-									case "String":
+									case "String[]":
 										resul = metodo[i].invoke(objeto,pojo.getparamsString()).toString();
 										System.out.println(resul);
 										break;

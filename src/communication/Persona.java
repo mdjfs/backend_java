@@ -13,32 +13,36 @@ public class Persona {
 		return this.id;
 	}
 	
-	public void prub(int i, String str,float fl) {
+	public void prub(float[] fl) {
 		System.out.println("prueba");
+		System.out.println(fl[0]);
+		
 	}
-
+	
+	public boolean getEstado(int[] id) {
+		boolean estado; 
+		
+		if(id[0] == this.id) {
+			estado = true;
+		}else {
+			estado = false;
+		}
+		return estado;
+	}
+	
+	
 	/*public boolean getEstado(String id) {
-		boolean estado; 
-		int newid = Integer.parseInt(id);
-		
-		if(newid == this.id) {
-			estado = true;
-		}else {
-			estado = false;
-		}
-		return estado;
+	boolean estado; 
+	int newid = Integer.parseInt(id);
+	
+	if(newid == this.id) {
+		estado = true;
+	}else {
+		estado = false;
 	}
-	*/
-	public boolean getEstado(int id) {
-		boolean estado; 
-		
-		if(id == this.id) {
-			estado = true;
-		}else {
-			estado = false;
-		}
-		return estado;
+	return estado;
 	}
+	 */
 
 	
 }

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import org.json.simple.JSONObject;
 
 import aux.Reformateador;
 
@@ -21,7 +21,23 @@ public class Dispacher extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@SuppressWarnings("unchecked")
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		// json to tests: {\"objName\":\"Persona\",\"methodName\":\"getEstado\",\"params\":[1],\"types\":[\"int\"]}
+		String json = request.getParameter("json");
+		Reformateador formato = new Reformateador(json);
+		Pojo objeto_json = formato.getFormatPojo();
+		Execute reflect= new Execute(objeto_json);
+		String result = reflect.run();
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		JSONObject result_json = new JSONObject();
+		result_json.put("result",result);
+		result_json.put("message","success");
+		out.print(result_json);
+	}
+	
+	/* protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String objName = request.getParameter("objName");
 		String methodName = request.getParameter("methodName");
 		String params = request.getParameter("params");
@@ -44,20 +60,6 @@ public class Dispacher extends HttpServlet {
 		out.println("<h1>"+resul1+"</h1>");
 		//out.println("<h1>"+resul2+"</h1>");
 		out.close();
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response){
-		String json = request.getParameter("json");
-		Reformateador formato = new Reformateador(json);
-		Pojo objeto_json = formato.getFormatPojo();
-		/* ya con este objeto lo manejas con
-		 * objeto_json.getparamsInt(), etc, todos sus getters, te devuelven strings o arreglos nativos de java
-		 * por ejemplo: */
-		System.out.println(objeto_json.getmethodName());
-		int[] params = objeto_json.getparamsInt();
-		for(int i=0; i < params.length ; i++) {
-			System.out.println("array index:"+i+" parameter int: "+params[i]);
-		}
-	}
+	} */
 
 }
