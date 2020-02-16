@@ -4,7 +4,7 @@ import java.lang.reflect.*;
 
 import com.google.gson.JsonObject;
 
-import aux.JSONResponses;
+import helper.JSONResponses;
 
 public class Execute {
 	private JSONResponses responses_invoke = new JSONResponses();

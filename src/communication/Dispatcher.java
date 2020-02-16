@@ -15,7 +15,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-import aux.JSONResponses;
+import helper.JSONResponses;
 
 @WebServlet("/Dispatcher")
 public class Dispatcher extends HttpServlet {

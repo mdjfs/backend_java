@@ -1,4 +1,4 @@
-package aux;
+package helper;
 
 import com.google.gson.JsonObject;
 

@@ -2,7 +2,7 @@ package bussinessObjects;
 
 import com.google.gson.JsonObject;
 
-import aux.JSONResponses;
+import helper.JSONResponses;
 
 public class User {
 	private JSONResponses responses_user = new JSONResponses();
