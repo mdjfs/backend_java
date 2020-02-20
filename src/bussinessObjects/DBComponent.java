@@ -27,4 +27,8 @@ public class DBComponent {
 		}
 	}
 	
+	public void ExeBath() {
+		
+	}
+	
 }
