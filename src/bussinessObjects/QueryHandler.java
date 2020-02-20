@@ -19,8 +19,8 @@ public class QueryHandler {
 		}
 	}
 	
-	public String GetQuery(String id, Object[] params) {
-		String query = querys.get(id);
+	public String GetQuery(String id) {
+		return querys.get(id);
 	}
 
 }
