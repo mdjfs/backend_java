@@ -19,18 +19,15 @@ public class DBComponent {
 	private Properties db_properties = null;
 	private QueryHandler querys = new QueryHandler();
 	
-	public DBComponent() 
-	{
-		try 
-		{
+	public DBComponent(){
+		try{
 			db_properties = config_db.getObjectProperties();
 			Class.forName(db_properties.getProperty("db.driver"));
 			this.conn = DriverManager.getConnection(db_properties.getProperty("db.url")
 													,db_properties.getProperty("db.username")
 													,db_properties.getProperty("db.password"));
 		} 
-		catch (SQLException | ClassNotFoundException sqle) 
-		{
+		catch (SQLException | ClassNotFoundException sqle){
 	            System.out.println("Error connecting in SQL: " + sqle);
 		}
 	}
