@@ -1,5 +1,7 @@
-package communication;
+package servlet;
 
+import communication.Execute;
+import communication.Pojo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +17,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-import helper.JSONResponses;
+import helpers.JSONResponses;
 
 @WebServlet("/Dispatcher")
 public class Dispatcher extends HttpServlet {
