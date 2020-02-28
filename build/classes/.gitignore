@@ -1,7 +1,7 @@
-/communication/
-/helper/
-/test/
 /BDComponent/
 /bussinessObjects/
 /helpers/
+/properties/
 /servlet/
+/test/
+/communication/

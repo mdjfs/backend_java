@@ -68,4 +68,28 @@ public class DBComponent {
 		
 	}
 	
+	public void exeBacth(ArrayList<String> list_query) throws SQLException {
+		//El Metodo exeBacth recibe un arrayList de String donde recorre el arreglo y ejecuta cada query.
+		String query = null;
+		try {
+			//para usar los metodos rollback y commit el autocommit debe estar desactivado. 
+		    conn.setAutoCommit(false);
+		    
+			for(int i=0; i<list_query.size(); i++) {
+				PreparedStatement pre = conn.prepareStatement(list_query.get(i));
+				query = list_query.get(i);
+				pre.executeUpdate();
+			}
+			
+			conn.commit();
+			conn.setAutoCommit(true);
+			System.out.println("Operacion exitosa");
+			
+		} catch (SQLException e) {
+			//Si hay un error de cualquier tipo en el query se ejecuta el metodo rollback que deshace los cambios de la base de datos.
+			conn.rollback();
+			System.out.println(e.getMessage()+"\n\nQuery: "+query);
+			}
+	}
+	
 }
