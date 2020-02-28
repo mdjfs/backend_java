@@ -34,37 +34,32 @@ public class DBComponent {
 		}
 	}
 	
-	public List<Map<String, Object>> ExeQuery(String id, Object[] params) {
+	public List<Map<String, Object>> ExeQuery(String id, Object[] params) throws SQLException {
 		String query_execute = querys.GetQuery(id);
 		List<Map<String , Object>>	result  = new ArrayList<Map<String,Object>>();
-		try {
-			PreparedStatement sentence = conn.prepareStatement(query_execute);
-			char[] detect_params = query_execute.toCharArray();
-			int params_count = 0;
-			for(int i=0; i<detect_params.length;i++)
+		PreparedStatement sentence = conn.prepareStatement(query_execute);
+		char[] detect_params = query_execute.toCharArray();
+		int params_count = 0;
+		for(int i=0; i<detect_params.length;i++)
+		{
+			if(detect_params[i] == '?')
 			{
-				if(detect_params[i] == '?')
-				{
-					params_count += 1;
-					sentence.setObject(params_count, params[params_count]);
-				}
+				params_count += 1;
+				sentence.setObject(params_count, params[params_count]);
 			}
-			ResultSet rs = sentence.executeQuery();
-			ResultSetMetaData meta_data = rs.getMetaData();
-			while(rs.next()) {
-				Map<String, Object> querys = new HashMap<String, Object>();
-				for(int i=0; i< meta_data.getColumnCount() ; i++) {
-					String column_name = meta_data.getColumnName(i);
-					Object column_value = rs.getObject(i);
-					querys.put(column_name, column_value);
-				}
-				result.add(querys);
-			}
-			return result;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
 		}
+		ResultSet rs = sentence.executeQuery();
+		ResultSetMetaData meta_data = rs.getMetaData();
+		while(rs.next()) {
+			Map<String, Object> querys = new HashMap<String, Object>();
+			for(int i=0; i< meta_data.getColumnCount() ; i++) {
+				String column_name = meta_data.getColumnName(i);
+				Object column_value = rs.getObject(i);
+				querys.put(column_name, column_value);
+			}
+			result.add(querys);
+		}
+		return result;
 		
 	}
 	
