@@ -68,7 +68,7 @@ public class DBComponent {
 		
 	}
 	
-	public void exeBacth(ArrayList<String> list_query) throws SQLException {
+	public void exeBatch(ArrayList<String> list_query) throws SQLException {
 		//El Metodo exeBacth recibe un arrayList de String donde recorre el arreglo y ejecuta cada query.
 		String query = null;
 		try {
@@ -82,7 +82,6 @@ public class DBComponent {
 			}
 			
 			conn.commit();
-			conn.setAutoCommit(true);
 			System.out.println("Operacion exitosa");
 			
 		} catch (SQLException e) {
@@ -90,6 +89,9 @@ public class DBComponent {
 			conn.rollback();
 			System.out.println(e.getMessage()+"\n\nQuery: "+query);
 			}
+		finally {
+			conn.setAutoCommit(true);
+		}
 	}
 	
 }
