@@ -4,10 +4,10 @@ import java.lang.reflect.*;
 
 import com.google.gson.JsonObject;
 
-import helpers.JSONResponses;
+import helpers.JSONManage;
 
 public class Execute {
-	private JSONResponses responses_invoke = new JSONResponses();
+	private JSONManage responses_invoke = new JSONManage();
 	
 	public JsonObject invoke(Pojo objeto_pojo) {
 		try 

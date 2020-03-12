@@ -17,14 +17,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
-import helpers.JSONResponses;
+import helpers.JSONManage;
 
 @WebServlet("/Dispatcher")
 public class Dispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StringBuffer buffertext = null;
 	private Gson gson = new Gson();
-	private JSONResponses json_outputs = new JSONResponses();
+	private JSONManage json_outputs = new JSONManage();
        
     public Dispatcher() {
         super();

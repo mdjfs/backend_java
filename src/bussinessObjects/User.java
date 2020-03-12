@@ -2,10 +2,10 @@ package bussinessObjects;
 
 import com.google.gson.JsonObject;
 
-import helpers.JSONResponses;
+import helpers.JSONManage;
 
 public class User {
-	private JSONResponses responses_user = new JSONResponses();
+	private JSONManage responses_user = new JSONManage();
 	private String name = "Hello world for the User";
 	private int id = 123456;
 	
