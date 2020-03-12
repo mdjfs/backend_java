@@ -1,6 +1,9 @@
 package communication;
 
+import java.io.File;
 import java.lang.reflect.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.google.gson.JsonObject;
 
@@ -21,5 +24,35 @@ public class Execute {
 			e.printStackTrace();
 			return responses_invoke.ReportErrorMessage(e.getMessage());
 		}
+	}
+	
+	private ArrayList<String> getNameObjects() {
+		ArrayList<String> name_objects = new ArrayList<String>();
+		File folder = new File("src/bussinessObjects");
+		String[] files = folder.list();
+		for(int i = 0; i < files.length ; i++)
+		{
+			if(files[i].contains(".java")) {
+				name_objects.add(files[i].replaceAll(".java", ""));
+			}
+		}
+		return name_objects;
+	}
+	
+	public HashMap<String, String> getObjectsAndMethods() throws ClassNotFoundException {
+		HashMap<String, String> objects_and_methods = new HashMap<String, String>();
+		ArrayList<String> objects = getNameObjects();
+		for(String reflect : objects) {
+			Class<?> obj_reflect = Class.forName("bussinessObjects."+reflect);
+			Method[] methods = obj_reflect.getDeclaredMethods();
+			String last_method = "";
+			for(Method method : methods) {
+				if( ! last_method.equals(method.getName())) {
+					objects_and_methods.put(reflect, method.getName());
+				}
+				last_method = method.getName();
+			}
+		}
+		return objects_and_methods;
 	}
 }

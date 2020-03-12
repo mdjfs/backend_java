@@ -4,8 +4,6 @@ package helpers;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import org.json.simple.JSONObject;
-
 import com.google.gson.JsonObject;
 
 public class JSONManage {
@@ -27,7 +25,7 @@ public class JSONManage {
 		return jsonObject;
 	}
 	
-	public String say_keys(String[] json_keys) {
+	public String sayKeys(String[] json_keys) {
 		/* metodo que devuelve el atributo con arreglo de las llaves que necesita el servlet
 		 *  en string */
 		String keys = "";
@@ -40,11 +38,10 @@ public class JSONManage {
 		return keys;
 	}
 	
-	public Boolean is_all_keys(JSONObject json_request, String[] json_keys) {
-		/* metodo que verifica si todas las llaves que necesita el servlet
-		 *  estan en el json */
+	public Boolean isAllKeys(String json_request, String[] json_keys) {
+		/* metodo que verifica si las palabras estan en el String */
 		for(int i=0; i < json_keys.length ; i++) {
-			if( ! json_request.containsKey(json_keys[i]) ) {
+			if( ! json_request.contains(json_keys[i]) ) {
 				return false;
 			}
 		}

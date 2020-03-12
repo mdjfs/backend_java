@@ -13,6 +13,13 @@ public class User {
 		return responses_user.ReportSuccessMessage(name);
 	}
 		
+	
+
+	
+	public void getStatusUser() {
+		
+	}
+	
 	public JsonObject getId() {
 		return responses_user.ReportSuccessMessage("the user id is: "+ id);
 	}
@@ -24,6 +31,10 @@ public class User {
 		}else {
 			return responses_user.ReportSuccessMessage("incorrect ID");
 		}
+	}
+	
+	public void getStatusUser(String hola) {
+		
 	}
 	
 }
