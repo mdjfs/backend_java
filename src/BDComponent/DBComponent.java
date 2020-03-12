@@ -20,6 +20,7 @@ public class DBComponent {
 	private ConfigComponent config_db = new ConfigComponent("/home/mdjfs/Documentos/db_config.properties");
 	private Properties db_properties = null;
 	private QueryHandler querys = new QueryHandler();
+	private boolean is_busy = false;
 	
 	public DBComponent(){
 		try{
@@ -87,6 +88,14 @@ public class DBComponent {
 		finally {
 			conn.setAutoCommit(true);
 		}
+	}
+	
+	public void setBusy(boolean is_busy) {
+		this.is_busy = is_busy;
+	}
+	
+	public boolean getBusy() {
+		return is_busy;
 	}
 	
 }

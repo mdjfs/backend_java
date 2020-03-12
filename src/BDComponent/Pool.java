@@ -1,34 +1,39 @@
 package BDComponent;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import java.util.ArrayList;
 
 public class Pool {
 	
-	private static BasicDataSource myDs= null;
+	private static ArrayList<DBComponent> instances = new ArrayList<DBComponent>();
+	private static int max_connections = 50;
+	private static int hops = 5;
+	private static int requests = 0;
 	
-	//metodo que obtiene la fuente de los datos
-	public static DataSource getDataSourse() {
-		 if(myDs==null) {
-			 myDs=new BasicDataSource();
-			 myDs.setDriverClassName("postgresql-9.1-901.jdbc4.jar");
-			 myDs.setUsername("UserName");
-			 myDs.setPassword("Password");
-			 myDs.setUrl("URL");
-			 //Definiendo el tamanio de pool
-			 myDs.setInitialSize(50);
-			 myDs.setMaxIdle(10);
-			 myDs.setMaxTotal(20);
-			 myDs.setMaxWaitMillis(3000);
-		 }
-		return myDs;
+	
+	private Pool() {
+		
 	}
 	
-	public static Connection getConnetion() throws SQLException{
-		return getDataSourse().getConnection();
+	public static synchronized DBComponent getDBInstance() {
+		requests++;
+		if(instances.size() < requests && requests < max_connections)
+		{
+			for(int i = 0; i < hops; i++)
+			{
+				instances.add(new DBComponent());
+			}
+		}
+		for(DBComponent viewStatus : instances) {
+			if(viewStatus.getBusy() == false) {
+				viewStatus.setBusy(true);
+				return viewStatus;
+			}
+		}
+		return null;
+	}
+	
+	public static synchronized void returnDBInstance(DBComponent instance) {
+		instance.setBusy(false);
+		requests--;
 	}
 }
