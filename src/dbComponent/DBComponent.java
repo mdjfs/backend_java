@@ -79,7 +79,7 @@ public class DBComponent {
 	}
 	
 	public void exeBatch(ArrayList<Query> list_query) throws SQLException {
-		//El metodo exeBatch recibe una lista de ID de querys con sus parametros
+		//El metodo exeBatch recibe una lista de objeto Querys con sus parametros
 		try {
 			//para usar los metodos rollback y commit el autocommit debe estar desactivado. 
 		    conn.setAutoCommit(false);
@@ -91,6 +91,22 @@ public class DBComponent {
 			
 		} catch (SQLException e) {
 			//Si hay un error de cualquier tipo en el query se ejecuta el metodo rollback que deshace los cambios de la base de datos.
+			conn.rollback();
+			System.out.println(e);
+		}
+		finally {
+			conn.setAutoCommit(true);
+		}
+	}
+	
+	public void exeSimple(Query query) throws SQLException{
+		try {
+		    conn.setAutoCommit(false);
+		    PreparedStatement sentence = setParams(query.getIDQuery(), query.getParamsQuery());
+		    sentence.executeUpdate();
+			conn.commit();
+			
+		} catch (SQLException e) {
 			conn.rollback();
 			System.out.println(e);
 		}
