@@ -1,4 +1,4 @@
-package BDComponent;
+package dbComponent;
 
 import java.util.ArrayList;
 

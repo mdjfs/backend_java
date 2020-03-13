@@ -1,6 +1,7 @@
-package BDComponent;
+package dbComponent;
 
 import helpers.ConfigComponent;
+import helpers.Query;
 import helpers.QueryHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,18 +9,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 public class DBComponent {
 	
 	private Connection conn = null;
-	private ConfigComponent config_db = new ConfigComponent("/home/mdjfs/Documentos/db_config.properties");
+	private ConfigComponent config_db = new ConfigComponent("src/properties/config_db.properties");
 	private Properties db_properties = null;
-	private QueryHandler querys = new QueryHandler();
+	private QueryHandler querys = new QueryHandler("src/properties/config_querys.properties");
 	private boolean is_busy = false;
 	
 	public DBComponent(){
@@ -35,24 +35,29 @@ public class DBComponent {
 		}
 	}
 	
-	public List<Map<String, Object>> ExeQuery(String id, Object[] params) throws SQLException {
-		String query_execute = querys.GetQuery(id);
-		List<Map<String , Object>>	result  = new ArrayList<Map<String,Object>>();
-		PreparedStatement sentence = conn.prepareStatement(query_execute);
-		char[] detect_params = query_execute.toCharArray();
+	private PreparedStatement setParams(String id, Object[] params) throws SQLException {
+		String query = querys.getQuery(id);
+		PreparedStatement sentence = conn.prepareStatement(query);
+		char[] detect_params = query.toCharArray();
 		int params_count = 0;
 		for(int i=0; i<detect_params.length;i++)
 		{
 			if(detect_params[i] == '?')
 			{
 				params_count += 1;
-				sentence.setObject(params_count, params[params_count]);
+				sentence.setObject(params_count, params[params_count-1]);
 			}
 		}
+		return sentence;
+	}
+	
+	public ArrayList<HashMap<String, Object>> exeQueryAL(String id, Object[] params) throws SQLException {
+		ArrayList<HashMap<String , Object>>	result  = new ArrayList<HashMap<String,Object>>();
+		PreparedStatement sentence = setParams(id, params);
 		ResultSet rs = sentence.executeQuery();
 		ResultSetMetaData meta_data = rs.getMetaData();
 		while(rs.next()) {
-			Map<String, Object> querys = new HashMap<String, Object>();
+			HashMap<String, Object> querys = new HashMap<String, Object>();
 			for(int i=0; i< meta_data.getColumnCount() ; i++) {
 				String column_name = meta_data.getColumnName(i);
 				Object column_value = rs.getObject(i);
@@ -61,30 +66,34 @@ public class DBComponent {
 			result.add(querys);
 		}
 		return result;
-		
 	}
 	
-	public void exeBatch(ArrayList<String> list_query) throws SQLException {
-		//El Metodo exeBacth recibe un arrayList de String donde recorre el arreglo y ejecuta cada query.
-		String query = null;
+	public ResultSet exeQueryRS(String id, Object[] params) throws SQLException {
+		PreparedStatement sentence = setParams(id, params);
+		return sentence.executeQuery();
+	}
+	
+	public ResultSet onlyTests(String SQL) throws SQLException {
+		Statement statement = conn.createStatement();
+		return statement.executeQuery(SQL);
+	}
+	
+	public void exeBatch(ArrayList<Query> list_query) throws SQLException {
+		//El metodo exeBatch recibe una lista de ID de querys con sus parametros
 		try {
 			//para usar los metodos rollback y commit el autocommit debe estar desactivado. 
 		    conn.setAutoCommit(false);
-		    
-			for(int i=0; i<list_query.size(); i++) {
-				PreparedStatement pre = conn.prepareStatement(list_query.get(i));
-				query = list_query.get(i);
-				pre.executeUpdate();
-			}
-			
+		    for(Query query : list_query) {
+		    	PreparedStatement sentence = setParams(query.getIDQuery(), query.getParamsQuery());
+		    	sentence.executeUpdate();
+		    }
 			conn.commit();
-			System.out.println("Operacion exitosa");
 			
 		} catch (SQLException e) {
 			//Si hay un error de cualquier tipo en el query se ejecuta el metodo rollback que deshace los cambios de la base de datos.
 			conn.rollback();
-			System.out.println(e.getMessage()+"\n\nQuery: "+query);
-			}
+			System.out.println(e);
+		}
 		finally {
 			conn.setAutoCommit(true);
 		}

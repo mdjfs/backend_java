@@ -1,1 +1,8 @@
-Guia de como usar los archivos Properties 
+IMPORTANTE !!!!!! para usar la base de datos debes de ajustar la configuracion a tu PC
+
+PASO 1. crea un archivo config_db.properties en esta mismo paquete
+PASO 2. igual, pero ahora config_querys.properties
+PASO 3. lee los ejemplos que estan en el paquete para que te relaciones !
+
+
+Estos archivos NO se veran registrados en el git, ya que deben de ser ignorados en el git ignore, para mayor privacidad !

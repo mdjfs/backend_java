@@ -1,6 +1,4 @@
-package helpers;
-
-import dbComponent.Pool;
+package test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,16 +7,18 @@ import java.util.HashMap;
 
 import communication.Execute;
 import dbComponent.DBComponent;
+import dbComponent.Pool;
+import helpers.Query;
 
-public class Security {
+public class ChargeObjects {
 
-	
-		public Security() throws ClassNotFoundException, SQLException {
-			/* El constructor se encarga de cargar los nombres de metodos y objetos en la base de datos */ 
-			DBComponent database = Pool.getDBInstance();
-			ArrayList<Query> querys = new ArrayList<Query>();
-			Execute getNames = new Execute();
-			HashMap<String, String[]> names = getNames.getObjectsAndMethods();
+	public static void main(String[] args) {
+		DBComponent database = Pool.getDBInstance();
+		ArrayList<Query> querys = new ArrayList<Query>();
+		Execute getNames = new Execute();
+		HashMap<String, String[]> names;
+		try {
+			names = getNames.getObjectsAndMethods();
 			for(String key : names.keySet()) {
 				// verifica si estan todos los objetos, si no, añade el objeto faltante a la lista de querys
 				ResultSet rs = database.exeQueryRS("select.where.name_object", new Object[] {key});
@@ -47,8 +47,13 @@ public class Security {
 					}
 				}
 			}
-			// hace el update de los metodos
 			database.exeBatch(querys);
 			Pool.returnDBInstance(database);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+	}
+
 }

@@ -39,19 +39,27 @@ public class Execute {
 		return name_objects;
 	}
 	
-	public HashMap<String, String> getObjectsAndMethods() throws ClassNotFoundException {
-		HashMap<String, String> objects_and_methods = new HashMap<String, String>();
+	public HashMap<String, String[]> getObjectsAndMethods() throws ClassNotFoundException {
+		HashMap<String, String[]> objects_and_methods = new HashMap<String, String[]>();
 		ArrayList<String> objects = getNameObjects();
 		for(String reflect : objects) {
 			Class<?> obj_reflect = Class.forName("bussinessObjects."+reflect);
 			Method[] methods = obj_reflect.getDeclaredMethods();
 			String last_method = "";
+			String[] methods_names = new String[methods.length];
+			int i=0;
 			for(Method method : methods) {
 				if( ! last_method.equals(method.getName())) {
-					objects_and_methods.put(reflect, method.getName());
+					methods_names[i] = method.getName();
+				}
+				else
+				{
+					methods_names[i] = "";
 				}
 				last_method = method.getName();
+				i++;
 			}
+			objects_and_methods.put(reflect, methods_names);
 		}
 		return objects_and_methods;
 	}

@@ -1,7 +1,5 @@
-/BDComponent/
-/helpers/
 /properties/
-/servlet/
+/dbComponent/
 /test/
 /communication/
-/bussinessObjects/
+/helpers/
