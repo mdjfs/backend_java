@@ -3,6 +3,7 @@ package bussinessObjects;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import com.google.gson.JsonObject;
 
@@ -23,8 +24,9 @@ public class Register {
 			String hash = hashing.toHashPassword(password);
 			DBComponent database = Pool.getDBInstance();
 			if( database != null) {
-				String creationtime = "Fecha: " + Calendar.DAY_OF_MONTH + "/"
-						+ Calendar.MONTH + "/" + Calendar.YEAR + " Hora: "
+				Calendar c = new GregorianCalendar();
+				String creationtime = "Fecha: " + c.get(Calendar.DAY_OF_MONTH) + "/"
+						+ c.get(Calendar.MONTH) + "/" + c.get(Calendar.YEAR)+ " Hora: "
 						+ Calendar.HOUR_OF_DAY + ":" + Calendar.MINUTE + ":" + Calendar.SECOND;
 				if( email.contains("@")) {
 					database.exeSimple(new Query("insert.users", new Object[] {name, surname, email, hash, creationtime}));
@@ -32,6 +34,7 @@ public class Register {
 					return json_manage.ReportSuccessMessage("Welcome "+name+" "+surname+" You're registered !");
 				}
 				else {
+					Pool.returnDBInstance(database);
 					return json_manage.ReportErrorMessage("Verify your email address");
 				}
 			}

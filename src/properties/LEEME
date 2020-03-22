@@ -1,8 +1,9 @@
-IMPORTANTE !!!!!! para usar la base de datos debes de ajustar la configuracion a tu PC
+El paquete Properties se encarga de ajustar todas las configuraciones dependiendo de tu PC
 
-PASO 1. crea un archivo config_db.properties en esta mismo paquete
-PASO 2. igual, pero ahora config_querys.properties
-PASO 3. lee los ejemplos que estan en el paquete para que te relaciones !
+
+Paso 1: Modifica la clase Properties colocando la URI de tu proyecto java correspondiente
+Paso 2: Verifica de tener los archivos que config_db.properties, config_querys.properties, config_pool.properties
+Paso 3: Lee la documentacion para relacionarte con las configuraciones
 
 
 Estos archivos NO se veran registrados en el git, ya que deben de ser ignorados en el git ignore, para mayor privacidad !

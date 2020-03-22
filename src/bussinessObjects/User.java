@@ -12,8 +12,6 @@ public class User {
 	public JsonObject getName() {
 		return responses_user.ReportSuccessMessage(name);
 	}
-		
-	
 
 	
 	public void getStatusUser() {

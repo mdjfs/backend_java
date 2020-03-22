@@ -8,6 +8,7 @@ import java.util.HashMap;
 import com.google.gson.JsonObject;
 
 import helpers.JSONManage;
+import properties.Properties;
 
 public class Execute {
 	private JSONManage responses_invoke = new JSONManage();
@@ -28,7 +29,7 @@ public class Execute {
 	
 	private ArrayList<String> getNameObjects() {
 		ArrayList<String> name_objects = new ArrayList<String>();
-		File folder = new File("src/bussinessObjects");
+		File folder = new File(Properties.BussinesObjectsURI);
 		String[] files = folder.list();
 		for(int i = 0; i < files.length ; i++)
 		{

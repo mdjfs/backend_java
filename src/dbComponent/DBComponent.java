@@ -17,9 +17,9 @@ import java.util.Properties;
 public class DBComponent {
 	
 	private Connection conn = null;
-	private ConfigComponent config_db = new ConfigComponent("src/properties/config_db.properties");
+	private ConfigComponent config_db = new ConfigComponent(properties.Properties.DBConfigURI);
 	private Properties db_properties = null;
-	private QueryHandler querys = new QueryHandler("src/properties/config_querys.properties");
+	private QueryHandler querys = new QueryHandler(properties.Properties.QuerysURI);
 	private boolean is_busy = false;
 	
 	public DBComponent(){
@@ -92,7 +92,7 @@ public class DBComponent {
 		} catch (SQLException e) {
 			//Si hay un error de cualquier tipo en el query se ejecuta el metodo rollback que deshace los cambios de la base de datos.
 			conn.rollback();
-			System.out.println(e);
+			throw new SQLException(e);
 		}
 		finally {
 			conn.setAutoCommit(true);
@@ -108,7 +108,7 @@ public class DBComponent {
 			
 		} catch (SQLException e) {
 			conn.rollback();
-			System.out.println(e);
+			throw new SQLException(e);
 		}
 		finally {
 			conn.setAutoCommit(true);

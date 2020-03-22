@@ -1,17 +1,26 @@
 package dbComponent;
 
 import java.util.ArrayList;
+import java.util.Properties;
+
+import helpers.ConfigComponent;
 
 public class Pool {
 	
 	private static ArrayList<DBComponent> instances = new ArrayList<DBComponent>();
-	private static int max_connections = 50;
+	private static int max_connections = 50; // DEFAULT
 	private static int hops = 5;
 	private static int requests = 0;
+	private ConfigComponent config_pool = new ConfigComponent(properties.Properties.POOLConfigURI);
 	
 	
 	private Pool() {
-		
+		Properties pool_properties = config_pool.getObjectProperties();
+		if(pool_properties.containsKey("maxconnections") && pool_properties.containsKey("hops"))
+		{
+			Pool.max_connections = (int) pool_properties.get("maxconnections");
+			Pool.hops = (int) pool_properties.get("hops");
+		}
 	}
 	
 	public static synchronized DBComponent getDBInstance() {

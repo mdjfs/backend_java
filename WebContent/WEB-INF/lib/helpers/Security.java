@@ -104,4 +104,14 @@ public class Security {
 				Pool.returnDBInstance(database);
 			}
 		}
+		
+		public boolean isHavePermissions(int id, String method, String object) {
+			HashMap<String, String[]> checker = permissions.get(id);
+			String[] methods = checker.get(object);
+			for(String methodchecker : methods) {
+				if(methodchecker.equals(method))
+					return true;
+			}
+			return false;
+		}
 }
