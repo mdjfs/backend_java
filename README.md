@@ -1,4 +1,5 @@
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReflectWork</h1>
+<h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version: 0.0.1</h6>
 
 <p>¿Que es?
 
@@ -67,9 +68,25 @@ boolean<br/>
 ArrayList<br/>
 int<br/>
 Integer<br/>
-float
+float<br/>
 
 
+<h2>Adaptando el proyecto a tu PC</h2>
+<h3>Creando la base de datos</h3>
+<a href="https://imgur.com/3T0XAsU"><img src="https://i.imgur.com/3T0XAsU.png" title="source: imgur.com" /></a>
+<p>Para el manejo de los objetos y metodos, necesitamos plantear ese esquema para modo de que el sistema pueda funcionar, el funcionamiento es simple. Al momento de que el servidor arranca, automaticamente carga todos los objetos y metodos que no estan guardados en la base de datos. El objeto de seguridad relaciona un perfil con permisos, donde esos permisos dicen a fin de cuentas que metodos puede manejar y cuales no. 
+
+Nota: Por el momento, como no existen roles, se tienen que agregar los permisos para cada perfil manualmente.
+Nota 2: Si el servidor se reinicia y hubo metodos borrados, quedaran registrados en la base de datos.
+
+Esperamos corregir eso para una proxima version. Siguiendo con el framework, estas son las tablas que necesitamos:</p>
+
+<h3>Users</h3>
+```
+hola
+```
+
+<p>Cabe destacar de antemano que se necesita tener Java EE y algun IDE de desarrollo... Despues de eso, deberas ir a tu carpeta de proyectos del IDE (en el caso de eclipse el workspace) y Clonar este repositorio, una vez abierto</p>
 
 Collaborators of the Backend:
 
