@@ -51,9 +51,6 @@ Metodo <b>registerUser</b>: </p>
 ```
 Vemos que es un metodo que recibe los datos de un usuario en string, se encarga de verificarlos y meterlos en una base de datos, sencillo... Lo interesante esta, que simplemente no hay que llamarlo en <b>ninguna parte del codigo</b> ¿Y entonces como se ejecuta diras? Pues...
 
-<a href="http://i.imgur.com/5WNlAmv.png">
-  <img src="http://imgur.com/5WNlAmvl.png" />
-</a>
 
 
 Collaborators of the Backend:
