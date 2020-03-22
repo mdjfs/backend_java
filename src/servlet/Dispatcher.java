@@ -4,6 +4,7 @@ import communication.Execute;
 import communication.Pojo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 import helpers.JSONManage;
+import helpers.Security;
 
 @WebServlet("/Dispatcher")
 public class Dispatcher extends HttpServlet {
@@ -26,9 +28,12 @@ public class Dispatcher extends HttpServlet {
 	private JSONManage json_manage = new JSONManage();
 	private PrintWriter out;
 	private HttpSession session;
+	private Security security;
        
-    public Dispatcher() {
+    public Dispatcher() throws ClassNotFoundException, SQLException {
         super();
+        security = new Security();
+        security.chargePermissions();
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{

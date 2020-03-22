@@ -11,7 +11,7 @@ import communication.Execute;
 import dbComponent.DBComponent;
 
 public class Security {
-		private HashMap<String, HashMap<String, String[]>> permissions = new HashMap<String, HashMap<String, String[]>>();
+		private HashMap<Integer, HashMap<String, String[]>> permissions = new HashMap<Integer, HashMap<String, String[]>>();
 	
 		public Security() throws ClassNotFoundException, SQLException {
 			/* El constructor se encarga de cargar los nombres de metodos y objetos en la base de datos */ 
@@ -58,8 +58,50 @@ public class Security {
 		public void chargePermissions() throws SQLException {
 			DBComponent database = Pool.getDBInstance();
 			if(database != null) {
+				// carga los perfiles
+				ResultSet rs = database.exeQueryRS("select.profile", new Object[] {});
+				while(rs.next()) {
+					permissions.put(rs.getInt(1), null);
+				}
 				// se extrae los permisos
-				ResultSet rs = database.exeQueryRS("select.permissions", new Object[] {});
+				permissions.forEach((id, map) -> 
+					{
+						try {
+							ResultSet result = database.exeQueryRS("select.where.id_profile_permissions", new Object[] {id});
+							ArrayList<Integer> idmethods = new ArrayList<Integer>();
+							while(result.next()) {
+								idmethods.add(result.getInt(2));
+							}
+							HashMap<String, ArrayList<String>> profilepermissions = new HashMap<String, ArrayList<String>>();
+							result = database.exeQueryRS("innerjoin.object.method", new Object[] {});
+							while(result.next()) {
+								if(!profilepermissions.containsKey(result.getString(3)))
+									profilepermissions.put(result.getString(3), new ArrayList<String>());
+								if(idmethods.contains(result.getInt(1))) {
+									ArrayList<String> addmethod = profilepermissions.get(result.getString(3));
+									addmethod.add(result.getString(2));
+									profilepermissions.put(result.getString(3), addmethod);
+								}
+							}
+							HashMap<String, String[]> profilepermissionsarray = new HashMap<String, String[]>();
+							profilepermissions.forEach((object, methods) -> {
+								int i=0;
+								String[] methodsarray = new String[methods.size()];
+								for(String method : methods) {
+									System.out.println(method);
+									methodsarray[i] = method;
+									i++;
+								}
+								System.out.println(object);
+								profilepermissionsarray.put(object, methodsarray);
+							});
+							permissions.put(id, profilepermissionsarray);
+							System.out.println(id);
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					});
+				Pool.returnDBInstance(database);
 			}
 		}
 }
