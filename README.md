@@ -49,7 +49,25 @@ Metodo <b>registerUser</b>: </p>
 		}
 	}
 ```
-Vemos que es un metodo que recibe los datos de un usuario en string, se encarga de verificarlos y meterlos en una base de datos, sencillo... Lo interesante esta, que simplemente no hay que llamarlo en <b>ninguna parte del codigo</b> ¿Y entonces como se ejecuta diras? Pues...
+<p>Vemos que es un metodo que recibe los datos de un usuario en string, se encarga de verificarlos y meterlos en una base de datos, sencillo... Lo interesante esta, que simplemente no hay que llamarlo en <b>ninguna parte del codigo</b> ¿Y entonces como se ejecuta diras? Pues...</p>
+
+<a href="https://imgur.com/udkkW7U"><img src="https://i.imgur.com/udkkW7U.png" title="source: imgur.com" /></a>
+
+<p>Tu despreocupate de como va a ser llamado el codigo, gracias al Framework esto es posible, simplemente tienes que poner el nombre de tu Clase, el nombre del metodo, los parametros y los tipos... 
+
+En el ejemplo anterior tenemos el metodo registerUser que se encuentra en la clase Register, y tiene 4 parametros de tipo String<p>
+	
+<h3>Tipos de Parametros soportados:</h3>
+string<br/>
+byte<br/>
+double<br/>
+char<br/>
+Character<br/>
+boolean<br/>
+ArrayList<br/>
+int<br/>
+Integer<br/>
+float
 
 
 
