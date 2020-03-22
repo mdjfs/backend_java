@@ -162,6 +162,56 @@ Tambien es importante que crees esos 3 archivos de configuracion, segun eso se r
 
 <h2>Entendiendo y configurando archivos</h2>
 
+<h4>config_db.properties</h4>
+
+```properties
+db.driver= (tu driver)
+db.url= (url de tu base de datos)
+db.username= (username de la base de datos)
+db.password= (password de la base de datos)
+```
+
+<h4>config_querys.properties</h4>
+
+```properties
+insert.object= INSERT INTO object (name_object) VALUES (?);
+insert.method= INSERT INTO method (name_method, id_object_method) VALUES (?, ?);
+insert.users = INSERT INTO users (name_users, surname_users, email_users, password_users, creationtime_users) VALUES (?, ?, ?, ?, ?);
+select.where.name_object=SELECT *FROM object WHERE name_object=?;
+select.where.name_method=SELECT *FROM method WHERE name_method=?;
+select.where.id_profile=SELECT *FROM profile WHERE id_profile=?;
+select.profile=SELECT *FROM profile;
+select.permissions=SELECT *FROM permissions;
+select.where.id_profile_permissions=SELECT *FROM permissions WHERE id_profile_permissions=?;
+select.where.id_method=SELECT *FROM method WHERE id_method=?;
+select.where.id_object=SELECT *FROM object WHERE id_object=?;
+innerjoin.object.method=SELECT method.id_method, method.name_method, object.name_object FROM method INNER JOIN object ON method.id_object_method = object.id_object;
+```
+
+<p>Usualmente esos son los querys que se usan hasta ahora, puedes anexar esos y otros si prefieres.</p>
+
+
+<h4>config_pool.properties</h4>
+
+```properties
+maxconnections= (maximas conexiones al mismo tiempo para la base de datos)
+hops= (instancias creadas al mismo tiempo "mordiscos")
+```
+
+
+<h2>Agregando Permisos</h2>
+
+<p>Cuando inicies el servidor por primera vez, si no hay errores, te cargara automaticamente los objetos y metodos en la base de datos... ¿Te acuerdas del usuario GUEST? si no, chequea arriba, si ya lo has hecho. Tienes que agarrar las ID de los metodos que quieras darle permiso al usuario GUEST e insertarlo en la tabla Permisos</p>
+
+<h2>Listo!</h2>
+
+<p>Ya puedes usarlo enviando y recibiendo jsons, probando creando metodos nuevos que hagan otras cosas. Si llegaste hasta aqui, gracias por apoyarnos. Estaremos avanzando y actualizando mas cosas con el tiempo !! </p>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
 Collaborators of the Backend:
 
 luisnvf7 -> Luis Villalobos <br/>
