@@ -16,7 +16,7 @@ Bienvenido al esquema de trabajo, como es un FrameWork desarrollado en Java, gra
 
 Metodo <b>registerUser</b>: </p>
 
-```
+```java
   private JSONManage json_manage = new JSONManage();
 	
 	public JsonObject registerUser(String name, String surname, String email, String password) {
@@ -82,17 +82,6 @@ Nota 2: Si el servidor se reinicia y hubo metodos borrados, quedaran registrados
 Esperamos corregir eso para una proxima version. Siguiendo con el framework, estas son las tablas que necesitamos:</p>
 
 <h3>Users</h3>
-```
-CREATE TABLE users
-(
-    id_users serial NOT NULL primary key,
-    name_users varchar,
-    surname_users varchar,
-    email_users varchar UNIQUE,
-    password_users char(64),
-    creationtime_users varchar
-)
-```
 
 <p>Cabe destacar de antemano que se necesita tener Java EE y algun IDE de desarrollo... Despues de eso, deberas ir a tu carpeta de proyectos del IDE (en el caso de eclipse el workspace) y Clonar este repositorio, una vez abierto</p>
 
