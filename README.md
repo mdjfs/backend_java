@@ -151,8 +151,16 @@ CREATE TABLE permissions
 )
 ```
 
+<b>(!) Algo muy importante: Hay que anexar un perfil Guest, que sera el default de cualquier persona, que usualmente nada mas tendra permiso a metodos de login y register. En la tabla perfil se inserta un perfil llamado GUEST con el ID 1, y a ese perfil le añadiremos permisos mas adelante</b>
 
-<p>Cabe destacar de antemano que se necesita tener Java EE y algun IDE de desarrollo... Despues de eso, deberas ir a tu carpeta de proyectos del IDE (en el caso de eclipse el workspace) y Clonar este repositorio, una vez abierto</p>
+<p>Cabe destacar de antemano que se necesita tener Java EE y algun IDE de desarrollo... Despues de eso, deberas ir a tu carpeta de proyectos del IDE (en el caso de eclipse el workspace) y Clonar este repositorio, una vez abierto se verá algo asi:</p>
+<a href="https://imgur.com/nMThDIJ"><img src="https://i.imgur.com/nMThDIJ.png" title="source: imgur.com" /></a>
+
+<p><b>(!)</b> Es importante que modifiques la URI y coloques donde esta colocado tu proyecto en el workspace.. Ejemplo en windows seria C:/Users/Desktop/eclipse_workspace/backend_java Por ejemplo... de esa URI depende todos los demas archivos.
+
+Tambien es importante que crees esos 3 archivos de configuracion, segun eso se regiran muchas cosas de la aplicacion</p>
+
+<h2>Entendiendo y configurando archivos</h2>
 
 Collaborators of the Backend:
 
