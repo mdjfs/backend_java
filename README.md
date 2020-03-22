@@ -83,6 +83,42 @@ Esperamos corregir eso para una proxima version. Siguiendo con el framework, est
 
 <h3>Users</h3>
 
+```sql
+CREATE TABLE users
+(
+    id_users serial NOT NULL primary key,
+    name_users varchar,
+    surname_users varchar,
+    email_users varchar UNIQUE,
+    password_users char(64),
+    creationtime_users varchar
+)
+```
+<h3>Profile</h3>
+
+```sql
+CREATE TABLE profile
+(
+    id_profile serial NOT NULL primary key,
+    username_profile varchar UNIQUE
+)
+```
+
+<h3>Profile Users</h3>
+
+```sql
+CREATE TABLE users_profile
+(
+    id_users_profile serial NOT NULL primary key,
+    id_profile integer NOT NULL,
+    id_users integer NOT NULL,
+    FOREIGN KEY (id_users) REFERENCES users(id_users)
+    FOREIGN KEY (id_profile) REFERENCES profile(id_profile)
+)
+```
+
+
+
 <p>Cabe destacar de antemano que se necesita tener Java EE y algun IDE de desarrollo... Despues de eso, deberas ir a tu carpeta de proyectos del IDE (en el caso de eclipse el workspace) y Clonar este repositorio, una vez abierto</p>
 
 Collaborators of the Backend:
