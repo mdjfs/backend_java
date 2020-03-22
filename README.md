@@ -116,7 +116,40 @@ CREATE TABLE users_profile
     FOREIGN KEY (id_profile) REFERENCES profile(id_profile)
 )
 ```
+<h3>Object</h3>
 
+```sql
+CREATE TABLE object
+(
+    id_object serial NOT NULL primary key,
+    name_object integer NOT NULL UNIQUE
+)
+```
+
+<h3>Method</h3>
+
+```sql
+CREATE TABLE method
+(
+    id_method serial NOT NULL primary key,
+    name_method integer NOT NULL,
+    id_object_method integer NOT NULL,
+    FOREIGN KEY (id_object_method) REFERENCES object(id_object)
+)
+```
+
+<h3>Permissions</h3>
+
+```sql
+CREATE TABLE permissions
+(
+    id_permissions serial NOT NULL primary key,
+    id_method_permissions integer NOT NULL,
+    id_profile_permissions integer NOT NULL,
+    FOREIGN KEY (id_method_permissions) REFERENCES method(id_method)
+    FOREIGN KEY (id_profile_permissions) REFERENCES profile(id_profile)
+)
+```
 
 
 <p>Cabe destacar de antemano que se necesita tener Java EE y algun IDE de desarrollo... Despues de eso, deberas ir a tu carpeta de proyectos del IDE (en el caso de eclipse el workspace) y Clonar este repositorio, una vez abierto</p>
