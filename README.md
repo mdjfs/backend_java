@@ -138,16 +138,21 @@ Else the response is a status 404, server is turn off or isn't the endpoint  <br
 <img src="https://i.imgur.com/i0RMDiW.png" title="source: imgur.com" />
 The default response with json empty is it <br/><br/>
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some Examples</h1>
-<b>First, you needs register and login to uses dynamic objs and methods</b><br/>
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First, you needs register and login to uses dynamic objs and methods</b><br/>
 <img src="https://i.imgur.com/nlIF8bj.png" title="source: imgur.com" />
 <img src="https://i.imgur.com/txy7TB3.png" title="source: imgur.com" />
 <img src="https://i.imgur.com/InpbAXm.png" title="source: imgur.com" />
 <img src="https://i.imgur.com/qXkSJCM.png" title="source: imgur.com" />
 <img src="https://i.imgur.com/9ygazdO.png" title="source: imgur.com" />
-<b>Next, you have session. The servlet needs this params:</b><br/>
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next, you have session. The servlet needs this params:</b><br/><br/>
 <img src="https://i.imgur.com/SEkYjva.png" title="source: imgur.com" />
-<b>Oh well ! Let's try, make a obj and method and restart the server</b><br/>
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oh well ! Let's try, make a obj and method and restart the server</b><br/><br/>
 <img src="https://i.imgur.com/CEC4wyL.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;But... If you try to uses this method, server says this:</b><br/><br/>
+<img src="https://i.imgur.com/Fz2ssSz.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You need give permissions in SQL, like this:</b><br/><br/>
+<img src="https://i.imgur.com/LR241SE.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: The objects and methods refresh in DB with server restart</b><br/><br/>
 string<br/>
 byte<br/>
 double<br/>
