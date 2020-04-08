@@ -1,7 +1,4 @@
-/properties/
 /helpers/
-/test/
 /servlet/
-/dbComponent/
-/communication/
 /bussinessObjects/
+/properties/
