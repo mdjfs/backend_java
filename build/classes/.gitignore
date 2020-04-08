@@ -1,4 +1,4 @@
-/helpers/
-/servlet/
-/bussinessObjects/
 /properties/
+/dbComponent/
+/bussinessObjects/
+/servlet/

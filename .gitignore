@@ -1,3 +1,2 @@
-/src/properties/config_db.properties
-/src/properties/config_querys.properties
-/src/properties/config_pool.properties
+/config/config_db.properties
+/config/config_pool.properties

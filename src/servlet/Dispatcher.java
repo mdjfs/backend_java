@@ -223,6 +223,7 @@ public class Dispatcher extends HttpServlet {
 				 			int id = session_user.getIDProfile();
 				 			String object = object_reflection.getobjName();
 				 			String method = object_reflection.getmethodName();
+				 			System.out.println(id);
 							if(security.isHavePermissions(id, method, object)) {
 								Execute run = new Execute();
 								out.println(run.invoke(object_reflection));
@@ -247,7 +248,6 @@ public class Dispatcher extends HttpServlet {
 					if(is_all_keys) {
 						JsonObject Gson = check.getAsJsonObject();
 						String action = Gson.get("action").getAsString();
-						System.out.println(action);
 						if(action.equals("register")) {
 							register(jsonText, Gson);
 						}

@@ -1,9 +1,0 @@
-El paquete Properties se encarga de ajustar todas las configuraciones dependiendo de tu PC
-
-
-Paso 1: Modifica la clase Properties colocando la URI de tu proyecto java correspondiente
-Paso 2: Verifica de tener los archivos que config_db.properties, config_querys.properties, config_pool.properties
-Paso 3: Lee la documentacion para relacionarte con las configuraciones
-
-
-Estos archivos NO se veran registrados en el git, ya que deben de ser ignorados en el git ignore, para mayor privacidad !
