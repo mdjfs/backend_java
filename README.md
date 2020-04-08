@@ -1,87 +1,35 @@
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReflectWork</h1>
-<h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version: 0.0.1</h6>
+<h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version: 0.0.2</h6>
 
-<p>¿Que es?
+<p>What is it?
 
-ReflectWork es un Framework desarrollado en Java usando la API de Reflection ¿Descriptivo no?
+is a Framework, development with Java using the API of Reflection. You can create classes and methods in one package, and methods and objects has been called dynamically
 
-Dejando el sentido del humor de lado, este trabajo se hizo con la finalidad de ahorrar trabajo repetitivo al desarrollador web, con la finalidad de que se dedique a hacer las funciones que necesita particularmente. ¿Como usarlo? el Framework trabaja estrictamente con Jsons enviados en forma de Raw. Plantea comunicaciones de esa forma</p>
+What's the point?
+
+To manage an application using Jsons</p>
 
 
 <a href="https://imgur.com/3wKj1iq"><img src="https://i.imgur.com/3wKj1iq.png" title="source: imgur.com" /></a>
 
-<p>... objName, methodName, params, types ???
+<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to uses this Framework</h1>
 
-Bienvenido al esquema de trabajo, como es un FrameWork desarrollado en Java, gracias a la API de reflection cuando necesites un metodo en especifico, lo puedes llamar dinamicamente desde un solo endpoint... Por ejemplo !
+<h3>Requeriments</h3>
+ * Postman </br>
+ * Apache Tomcat </br>
+ * Java EE </br>
+ * IDE with Java EE  </br>
+ * PostgreSQL </br>
 
-Metodo <b>registerUser</b>: </p>
+<h4>1. Create Database</h4>
 
-```java
-  private JSONManage json_manage = new JSONManage();
-	
-	public JsonObject registerUser(String name, String surname, String email, String password) {
-		HashPassword hashing = new HashPassword();
-		try 
-		{
-			String hash = hashing.toHashPassword(password);
-			DBComponent database = Pool.getDBInstance();
-			if( database != null) {
-				Calendar c = new GregorianCalendar();
-				String creationtime = "Fecha: " + c.get(Calendar.DAY_OF_MONTH) + "/"
-						+ c.get(Calendar.MONTH) + "/" + c.get(Calendar.YEAR)+ " Hora: "
-						+ Calendar.HOUR_OF_DAY + ":" + Calendar.MINUTE + ":" + Calendar.SECOND;
-				if( email.contains("@")) {
-					database.exeSimple(new Query("insert.users", new Object[] {name, surname, email, hash, creationtime}));
-					Pool.returnDBInstance(database);
-					return json_manage.ReportSuccessMessage("Welcome "+name+" "+surname+" You're registered !");
-				}
-				else {
-					Pool.returnDBInstance(database);
-					return json_manage.ReportErrorMessage("Verify your email address");
-				}
-			}
-			else {
-				return json_manage.ReportErrorMessage("Error in database consults");
-			}
-		} catch (NoSuchAlgorithmException | SQLException e) 
-		{
-			e.printStackTrace();
-			return json_manage.ReportErrorMessage(e.getMessage());
-		}
-	}
-```
-<p>Vemos que es un metodo que recibe los datos de un usuario en string, se encarga de verificarlos y meterlos en una base de datos, sencillo... Lo interesante esta, que simplemente no hay que llamarlo en <b>ninguna parte del codigo</b> ¿Y entonces como se ejecuta diras? Pues...</p>
-
-<a href="https://imgur.com/udkkW7U"><img src="https://i.imgur.com/udkkW7U.png" title="source: imgur.com" /></a>
-
-<p>Tu despreocupate de como va a ser llamado el codigo, gracias al Framework esto es posible, simplemente tienes que poner el nombre de tu Clase, el nombre del metodo, los parametros y los tipos... 
-
-En el ejemplo anterior tenemos el metodo registerUser que se encuentra en la clase Register, y tiene 4 parametros de tipo String<p>
-	
-<h3>Tipos de Parametros soportados:</h3>
-string<br/>
-byte<br/>
-double<br/>
-char<br/>
-Character<br/>
-boolean<br/>
-ArrayList<br/>
-int<br/>
-Integer<br/>
-float<br/>
-
-
-<h2>Adaptando el proyecto a tu PC</h2>
-<h3>Creando la base de datos</h3>
 <a href="https://imgur.com/3T0XAsU"><img src="https://i.imgur.com/3T0XAsU.png" title="source: imgur.com" /></a>
-<p>Para el manejo de los objetos y metodos, necesitamos plantear ese esquema para modo de que el sistema pueda funcionar, el funcionamiento es simple. Al momento de que el servidor arranca, automaticamente carga todos los objetos y metodos que no estan guardados en la base de datos. El objeto de seguridad relaciona un perfil con permisos, donde esos permisos dicen a fin de cuentas que metodos puede manejar y cuales no. 
+This is a representation of the database
 
-Nota: Por el momento, como no existen roles, se tienen que agregar los permisos para cada perfil manualmente.
-Nota 2: Si el servidor se reinicia y hubo metodos borrados, quedaran registrados en la base de datos.
 
-Esperamos corregir eso para una proxima version. Siguiendo con el framework, estas son las tablas que necesitamos:</p>
+Please create a new database with some name in PostgreSQL, after this, please execute this commands in SQL:
 
-<h3>Users</h3>
+<h6>Users</h6>
 
 ```sql
 CREATE TABLE users
@@ -94,7 +42,7 @@ CREATE TABLE users
     creationtime_users varchar
 )
 ```
-<h3>Profile</h3>
+<h6>Profile</h6>
 
 ```sql
 CREATE TABLE profile
@@ -104,7 +52,7 @@ CREATE TABLE profile
 )
 ```
 
-<h3>Profile Users</h3>
+<h6>Profile Users</h6>
 
 ```sql
 CREATE TABLE users_profile
@@ -116,7 +64,7 @@ CREATE TABLE users_profile
     FOREIGN KEY (id_profile) REFERENCES profile(id_profile)
 )
 ```
-<h3>Object</h3>
+<h6>Object</h6>
 
 ```sql
 CREATE TABLE object
@@ -126,7 +74,7 @@ CREATE TABLE object
 )
 ```
 
-<h3>Method</h3>
+<h6>Method</h6>
 
 ```sql
 CREATE TABLE method
@@ -138,7 +86,7 @@ CREATE TABLE method
 )
 ```
 
-<h3>Permissions</h3>
+<h6>Permissions</h6>
 
 ```sql
 CREATE TABLE permissions
@@ -150,62 +98,79 @@ CREATE TABLE permissions
     FOREIGN KEY (id_profile_permissions) REFERENCES profile(id_profile)
 )
 ```
+<h3>2. Download Project </h3>
 
-<b>(!) Algo muy importante: Hay que anexar un perfil Guest, que sera el default de cualquier persona, que usualmente nada mas tendra permiso a metodos de login y register. En la tabla perfil se inserta un perfil llamado GUEST con el ID 1, y a ese perfil le añadiremos permisos mas adelante</b>
+Download this as a zip or clone in your IDE workspace, if you download please unzip this in your IDE workspace. After, open your IDE and import project of projects existing in your workspace
 
-<p>Cabe destacar de antemano que se necesita tener Java EE y algun IDE de desarrollo... Despues de eso, deberas ir a tu carpeta de proyectos del IDE (en el caso de eclipse el workspace) y Clonar este repositorio, una vez abierto se verá algo asi:</p>
-<a href="https://imgur.com/nMThDIJ"><img src="https://i.imgur.com/nMThDIJ.png" title="source: imgur.com" /></a>
+<h3> 3. Configure Project </h3>
 
-<p><b>(!)</b> Es importante que modifiques la URI y coloques donde esta colocado tu proyecto en el workspace.. Ejemplo en windows seria C:/Users/Desktop/eclipse_workspace/backend_java Por ejemplo... de esa URI depende todos los demas archivos.
+Enter in the folder Config and create the .properties files for config_db and config_pool, you need to create this files:<br/><br/>
+config_pool.properties<br/>
+maxconnections={number};<br/>
+hops={number};<br/><br/>
+config_db.properties<br/>
+db.driver=org.postgresql.Driver; // to use PostgreSQL<br/>
+db.url=jdbc:postgresql://localhost:5432/{YourNameDB};<br/>
+db.username={YourUsernameDB};<br/>
+db.password={PassofUsernameDB};<br/><br/>
+<img src="https://i.imgur.com/gq6Tfjo.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/epRaDT5.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/ESydrHJ.png" title="source: imgur.com" />
 
-Tambien es importante que crees esos 3 archivos de configuracion, segun eso se regiran muchas cosas de la aplicacion</p>
+<b>Very important:</b> The database needs the previous tables
 
-<h2>Entendiendo y configurando archivos</h2>
+<h3> 4. Runs a Server </h3>
 
-<h4>config_db.properties</h4>
+In your IDE with Java EE, open the project and create a server in servers tab. Use a apache tomcat 8.0 or higher, and add the dynamic web project in server. after, start the server.
+<img src="https://i.imgur.com/gJXfszv.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/JtwcJA3.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/SoSb0Xo.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/mahaCuo.png" title="source: imgur.com" />
 
-```properties
-db.driver= (tu driver)
-db.url= (url de tu base de datos)
-db.username= (username de la base de datos)
-db.password= (password de la base de datos)
-```
+<h3> 5. Test Server </h3>
 
-<h4>config_querys.properties</h4>
+Open postman and create new request in POST method to this endpoint: localhost:8080/TeamBackendJava/Dispatcher or localhost:8080/backend_java/Dispatcher, next go to body raw, and write Json, click in send and wait responses. <br/> <br/>
 
-```properties
-insert.object= INSERT INTO object (name_object) VALUES (?);
-insert.method= INSERT INTO method (name_method, id_object_method) VALUES (?, ?);
-insert.users = INSERT INTO users (name_users, surname_users, email_users, password_users, creationtime_users) VALUES (?, ?, ?, ?, ?);
-select.where.name_object=SELECT *FROM object WHERE name_object=?;
-select.where.name_method=SELECT *FROM method WHERE name_method=?;
-select.where.id_profile=SELECT *FROM profile WHERE id_profile=?;
-select.profile=SELECT *FROM profile;
-select.permissions=SELECT *FROM permissions;
-select.where.id_profile_permissions=SELECT *FROM permissions WHERE id_profile_permissions=?;
-select.where.id_method=SELECT *FROM method WHERE id_method=?;
-select.where.id_object=SELECT *FROM object WHERE id_object=?;
-innerjoin.object.method=SELECT method.id_method, method.name_method, object.name_object FROM method INNER JOIN object ON method.id_object_method = object.id_object;
-```
+If the response is a JSON. You're using the Framework <br/>
+Else if the response is a status 500 with html, servers finds a big bug  <br/>
+Else the response is a status 404, server is turn off or isn't the endpoint  <br/><br/>
 
-<p>Usualmente esos son los querys que se usan hasta ahora, puedes anexar esos y otros si prefieres.</p>
+<img src="https://i.imgur.com/i0RMDiW.png" title="source: imgur.com" />
+The default response with json empty is it <br/><br/>
+<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some Examples</h1>
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;First, you needs register and login to uses dynamic objs and methods</b><br/>
+<img src="https://i.imgur.com/nlIF8bj.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/txy7TB3.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/InpbAXm.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/qXkSJCM.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/9ygazdO.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next, you have session. The servlet needs this params:</b><br/><br/>
+<img src="https://i.imgur.com/SEkYjva.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oh well ! Let's try, make a obj and method and restart the server</b><br/><br/>
+<img src="https://i.imgur.com/d1OBeDn.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;But... If you try to uses this method, server says this:</b><br/><br/>
+<img src="https://i.imgur.com/Fz2ssSz.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You need give permissions in SQL, like this:</b><br/><br/>
+<img src="https://i.imgur.com/7Ykk6io.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: The objects and methods refresh in DB with server restart</b><br/><br/>
+<img src="https://i.imgur.com/ToIfCIX.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/Sp8y6JN.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And repeat process for method, next, restart the server</b><br/><br/>
+<img src="https://i.imgur.com/CvlFJxu.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok, now you have permissions, good !</b><br/><br/>
+<img src="https://i.imgur.com/icFS1ov.png" title="source: imgur.com" /> <br/><br/>
 
-
-<h4>config_pool.properties</h4>
-
-```properties
-maxconnections= (maximas conexiones al mismo tiempo para la base de datos)
-hops= (instancias creadas al mismo tiempo "mordiscos")
-```
-
-
-<h2>Agregando Permisos</h2>
-
-<p>Cuando inicies el servidor por primera vez, si no hay errores, te cargara automaticamente los objetos y metodos en la base de datos... ¿Te acuerdas del usuario GUEST? si no, chequea arriba, si ya lo has hecho. Tienes que agarrar las ID de los metodos que quieras darle permiso al usuario GUEST e insertarlo en la tabla Permisos</p>
-
-<h2>Listo!</h2>
-
-<p>Ya puedes usarlo enviando y recibiendo jsons, probando creando metodos nuevos que hagan otras cosas. Si llegaste hasta aqui, gracias por apoyarnos. Estaremos avanzando y actualizando mas cosas con el tiempo !! </p>
+<h4>Types of paramateres supported:</h4>
+string<br/>
+byte<br/>
+double<br/>
+char<br/>
+Character<br/>
+boolean<br/>
+ArrayList<br/>
+int<br/>
+Integer<br/>
+float<br/>
 
 
 <br/>
