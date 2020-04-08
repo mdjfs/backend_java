@@ -147,7 +147,7 @@ The default response with json empty is it <br/><br/>
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next, you have session. The servlet needs this params:</b><br/><br/>
 <img src="https://i.imgur.com/SEkYjva.png" title="source: imgur.com" />
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oh well ! Let's try, make a obj and method and restart the server</b><br/><br/>
-<img src="https://i.imgur.com/CEC4wyL.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/d1OBeDn.png" title="source: imgur.com" />
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;But... If you try to uses this method, server says this:</b><br/><br/>
 <img src="https://i.imgur.com/Fz2ssSz.png" title="source: imgur.com" />
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You need give permissions in SQL, like this:</b><br/><br/>
@@ -155,7 +155,12 @@ The default response with json empty is it <br/><br/>
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: The objects and methods refresh in DB with server restart</b><br/><br/>
 <img src="https://i.imgur.com/ToIfCIX.png" title="source: imgur.com" />
 <img src="https://i.imgur.com/Sp8y6JN.png" title="source: imgur.com" />
-<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And repeat process for method</b><br/><br/>
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And repeat process for method, next, restart the server</b><br/><br/>
+<img src="https://i.imgur.com/CvlFJxu.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ok, now you have permissions, good !</b><br/><br/>
+<img src="https://i.imgur.com/icFS1ov.png" title="source: imgur.com" /> <br/><br/>
+
+<h4>Types of paramateres supported:</h4>
 string<br/>
 byte<br/>
 double<br/>
