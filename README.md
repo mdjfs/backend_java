@@ -154,7 +154,8 @@ The default response with json empty is it <br/><br/>
 <img src="https://i.imgur.com/7Ykk6io.png" title="source: imgur.com" />
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: The objects and methods refresh in DB with server restart</b><br/><br/>
 <img src="https://i.imgur.com/ToIfCIX.png" title="source: imgur.com" />
-<img src="https://i.imgur.com/KLh37QE.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/Sp8y6JN.png" title="source: imgur.com" />
+<br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;And repeat process for method</b><br/><br/>
 string<br/>
 byte<br/>
 double<br/>
