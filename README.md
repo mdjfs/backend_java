@@ -1,11 +1,13 @@
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ReflectWork</h1>
-<h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version: 0.0.1</h6>
+<h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;version: 0.0.2</h6>
 
-<p>¿Que es?
+<p>What is it?
 
-ReflectWork es un Framework desarrollado en Java usando la API de Reflection ¿Descriptivo no?
+is a Framework, development with Java using the API of Reflection
 
-Dejando el sentido del humor de lado, este trabajo se hizo con la finalidad de ahorrar trabajo repetitivo al desarrollador web, con la finalidad de que se dedique a hacer las funciones que necesita particularmente. ¿Como usarlo? el Framework trabaja estrictamente con Jsons enviados en forma de Raw. Plantea comunicaciones de esa forma</p>
+What's the point?
+
+To manage an application using Jsons</p>
 
 
 <a href="https://imgur.com/3wKj1iq"><img src="https://i.imgur.com/3wKj1iq.png" title="source: imgur.com" /></a>
