@@ -116,6 +116,16 @@ db.password={PassofUsernameDB};<br/><br/>
 <img src="https://i.imgur.com/gq6Tfjo.png" title="source: imgur.com" />
 <img src="https://i.imgur.com/epRaDT5.png" title="source: imgur.com" />
 <img src="https://i.imgur.com/ESydrHJ.png" title="source: imgur.com" />
+
+<b>Very important:</b> The database needs the previous tables
+
+<h3> 4. Runs a Server </h3>
+
+In your IDE with Java EE, open the project and create a server in servers tab. Use a apache tomcat 8.0 or higher, and add the dynamic web project in server.
+<img src="https://i.imgur.com/gJXfszv.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/JtwcJA3.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/SoSb0Xo.png" title="source: imgur.com" />
+
 <p>... objName, methodName, params, types ???
 
 Bienvenido al esquema de trabajo, como es un FrameWork desarrollado en Java, gracias a la API de reflection cuando necesites un metodo en especifico, lo puedes llamar dinamicamente desde un solo endpoint... Por ejemplo !
