@@ -104,6 +104,18 @@ Download this as a zip or clone in your IDE workspace, if you download please un
 
 <h3> 3. Configure Project </h3>
 
+Enter in the folder Config and create the .properties files for config_db and config_pool, you need to create this files:<br/><br/>
+config_pool.properties<br/>
+maxconnections={number};<br/>
+hops={number};<br/><br/>
+config_db.properties<br/>
+db.driver=org.postgresql.Driver; // to use PostgreSQL<br/>
+db.url=jdbc:postgresql://localhost:5432/{YourNameDB};<br/>
+db.username={YourUsernameDB};<br/>
+db.password={PassofUsernameDB};<br/><br/>
+<img src="https://i.imgur.com/gq6Tfjo.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/epRaDT5.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/ESydrHJ.png" title="source: imgur.com" />
 <p>... objName, methodName, params, types ???
 
 Bienvenido al esquema de trabajo, como es un FrameWork desarrollado en Java, gracias a la API de reflection cuando necesites un metodo en especifico, lo puedes llamar dinamicamente desde un solo endpoint... Por ejemplo !
