@@ -151,8 +151,10 @@ The default response with json empty is it <br/><br/>
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;But... If you try to uses this method, server says this:</b><br/><br/>
 <img src="https://i.imgur.com/Fz2ssSz.png" title="source: imgur.com" />
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You need give permissions in SQL, like this:</b><br/><br/>
-<img src="https://i.imgur.com/LR241SE.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/7Ykk6io.png" title="source: imgur.com" />
 <br/><br/><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: The objects and methods refresh in DB with server restart</b><br/><br/>
+<img src="https://i.imgur.com/ToIfCIX.png" title="source: imgur.com" />
+<img src="https://i.imgur.com/KLh37QE.png" title="source: imgur.com" />
 string<br/>
 byte<br/>
 double<br/>
