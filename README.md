@@ -12,6 +12,94 @@ To manage an application using Jsons</p>
 
 <a href="https://imgur.com/3wKj1iq"><img src="https://i.imgur.com/3wKj1iq.png" title="source: imgur.com" /></a>
 
+<h1>How to uses this Framework</h1>
+
+<h3>Requeriments</h3>
+ * Postman </br>
+ * Apache Tomcat </br>
+ * Java EE </br>
+ * IDE with Java EE  </br>
+ * PostgreSQL </br>
+
+<h4>1. Create Database</h4>
+
+<a href="https://imgur.com/3T0XAsU"><img src="https://i.imgur.com/3T0XAsU.png" title="source: imgur.com" /></a>
+This is a representation of the database
+
+
+Please create a new database with some name in PostgreSQL, after this, please execute this commands in SQL:
+
+<h6>Users</h6>
+
+```sql
+CREATE TABLE users
+(
+    id_users serial NOT NULL primary key,
+    name_users varchar,
+    surname_users varchar,
+    email_users varchar UNIQUE,
+    password_users char(64),
+    creationtime_users varchar
+)
+```
+<h6>Profile</h6>
+
+```sql
+CREATE TABLE profile
+(
+    id_profile serial NOT NULL primary key,
+    username_profile varchar UNIQUE
+)
+```
+
+<h6>Profile Users</h6>
+
+```sql
+CREATE TABLE users_profile
+(
+    id_users_profile serial NOT NULL primary key,
+    id_profile integer NOT NULL,
+    id_users integer NOT NULL,
+    FOREIGN KEY (id_users) REFERENCES users(id_users)
+    FOREIGN KEY (id_profile) REFERENCES profile(id_profile)
+)
+```
+<h6>Object</h6>
+
+```sql
+CREATE TABLE object
+(
+    id_object serial NOT NULL primary key,
+    name_object integer NOT NULL UNIQUE
+)
+```
+
+<h6>Method</h6>
+
+```sql
+CREATE TABLE method
+(
+    id_method serial NOT NULL primary key,
+    name_method integer NOT NULL,
+    id_object_method integer NOT NULL,
+    FOREIGN KEY (id_object_method) REFERENCES object(id_object)
+)
+```
+
+<h6>Permissions</h6>
+
+```sql
+CREATE TABLE permissions
+(
+    id_permissions serial NOT NULL primary key,
+    id_method_permissions integer NOT NULL,
+    id_profile_permissions integer NOT NULL,
+    FOREIGN KEY (id_method_permissions) REFERENCES method(id_method)
+    FOREIGN KEY (id_profile_permissions) REFERENCES profile(id_profile)
+)
+```
+
+
 <p>... objName, methodName, params, types ???
 
 Bienvenido al esquema de trabajo, como es un FrameWork desarrollado en Java, gracias a la API de reflection cuando necesites un metodo en especifico, lo puedes llamar dinamicamente desde un solo endpoint... Por ejemplo !
