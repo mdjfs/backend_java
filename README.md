@@ -98,7 +98,11 @@ CREATE TABLE permissions
     FOREIGN KEY (id_profile_permissions) REFERENCES profile(id_profile)
 )
 ```
+<h3>2. Download Project </h3>
 
+Download this as a zip or clone in your IDE workspace, if you download please unzip this in your IDE workspace. After, open your IDE and import project of projects existing in your workspace
+
+<h3> 3. Configure Project </h3>
 
 <p>... objName, methodName, params, types ???
 
